@@ -1,1 +1,42 @@
-<p>Succesfully connected to server!<p>
+<h1>Eat the taco</h1>
+
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col s6">
+                {{#each tacos}}
+                {{#unless this.devoured}}
+                <div>
+                    <form action="/tacos/{{this.id}}?_method=PUT" method="POST">
+                        <button type="submit" class='tacoAvailable'> {{this.taco_name}}</button>
+                    </form>
+                </div>
+                {{/unless}}
+                {{/each}}
+            </div>
+
+            <div class="col s6">
+                {{#each tacos}}
+                {{#if this.devoured}}
+                <div class='tacoEaten'>
+                    <div>
+                        {{this.taco_name}}
+                    </div>
+                </div>
+                {{/if}}
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</main>
+
+<h2>Add a taco</h2>
+
+<div class="row">
+    <div class="col 12">
+        <form action="/tacos" method="POST">
+            <input type="text" id="name" name="taco_name" placeholder="">
+            <button type="submit" class="addTacoButton">Add a taco</button>
+        </form>
+    </div>
+</div>
